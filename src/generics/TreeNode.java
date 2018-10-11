@@ -5,7 +5,9 @@ public class TreeNode<K extends Comparable<K>> implements Comparable<K>{
 	private K key;
 	private TreeNode<K> right;
 	private TreeNode<K> left;
+	private TreeNode<K> parent;
 	
+
 	public TreeNode(K value) {
 		this.key = value;
 	}
@@ -33,8 +35,15 @@ public class TreeNode<K extends Comparable<K>> implements Comparable<K>{
 	public void setLeft(TreeNode<K> left) {
 		this.left = left;
 	}
+	public TreeNode<K> getParent() {
+		return parent;
+	}
 
-	public K search(TreeNode<K> node, K key) {
+	public void setParent(TreeNode<K> parent) {
+		this.parent = parent;
+	}
+
+	public K search(K key) {
 		if(node == null) {
 			return null;
 		}else if(node.get().equals(key)) {
@@ -46,6 +55,16 @@ public class TreeNode<K extends Comparable<K>> implements Comparable<K>{
 				return search(node.left, key);
 			}
 			
+		}
+	}
+	
+	public void insert(TreeNode<K> current, TreeNode<K> newNode) {
+		int compare = current.compareTo(newNode.get());
+		if(compare < 0) {
+			if(current.right == null) {
+				current.right = newNode;
+				
+			}
 		}
 	}
 
