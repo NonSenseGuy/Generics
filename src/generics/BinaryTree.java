@@ -79,38 +79,37 @@ public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterfa
 	}
 	//Returns the minimum key in the tree
 	@Override
-	public Pair<K,V> min(TreeNode<K,V> node) {
+	public TreeNode<K,V> min(TreeNode<K,V> node) {
 		if(node != null) {
 			while(node.getLeft() != null) {
 				node = node.getLeft();
 			}
-			return new Pair<K,V>(node.getKey(), node.getValue());
+			return node;
 		}
 		return null;
 	}
 	//Returns the maximum key in the tree
 	@Override
-	public Pair<K,V> max(TreeNode<K,V> node) {
+	public TreeNode<K,V> max(TreeNode<K,V> node) {
 		if(node != null) {
 			while(node.getRight() != null) {
 				node = node.getRight();
 			}
-			return new Pair<K,V>(node.getKey(), node.getValue());
+			return node;
 		}
 		return null;
 	}
 	
 	@Override
-	public Pair<K,V> successor(K key) {
+	public TreeNode<K,V> successor(K key) {
 		if(root != null) {
-			Pair<K,V> node = successor(search(key));
-			return node;
+			return successor(search(key));
 		}
 		return null;
 	}
 
 	
-	private Pair<K,V> successor(TreeNode<K,V> node) {
+	private TreeNode<K,V> successor(TreeNode<K,V> node) {
 		if(node.getRight() != null) {
 			return min(node.getRight());
 		}
@@ -119,18 +118,18 @@ public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterfa
 			node = y;
 			y = y.getParent();
 		}
-		return new Pair<K,V>(y.getKey(), y.getValue());
+		return y;
 	}
 
 	@Override
-	public Pair<K,V> predecessor(K key) {
+	public TreeNode<K,V> predecessor(K key) {
 		if(root != null) {
 			return predecessor(search(key));
 		}
 		return null;
 	}
 	
-	private Pair<K,V> predecessor(TreeNode<K,V> node) {
+	private TreeNode<K,V> predecessor(TreeNode<K,V> node) {
 		if(node.getLeft() != null) {
 			return max(node.getLeft());
 		}
@@ -139,7 +138,7 @@ public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterfa
 			node = y;
 			y = y.getParent();
 		}
-		return new Pair<K,V>(y.getKey(), y.getValue());
+		return y;
 	}
 	
 
@@ -154,6 +153,35 @@ public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterfa
 	private void delete(TreeNode<K,V> node) {
 		
 	}
+//	
+//	private void delete(TreeNode<K,V> node) {
+//		TreeNode<K,V> x = node;
+//		TreeNode<K,V> y  = node;
+//		if(x.getLeft() == null || x.getRight() == null) {
+//			y = node;
+//		}else {
+//			y = successor(y);
+//		}
+//		if(y.getLeft() != null) {
+//			x = y.getLeft();
+//		}else {
+//			x = y.getRight();
+//		}
+//		if(x != null) {
+//			x.setParent(y.getParent());
+//		}
+//		if(y.getParent() == null) {
+//			root = x;	
+//		}else if(y == y.getParent().getLeft()) {
+//			y.getParent().setLeft(x);
+//		}else {
+//			y.getParent().setRight(x);
+//		}
+//		if(y != x) {
+//			x.setKey(y.getKey());
+//		}
+//		
+//	}
 
 	
 	
