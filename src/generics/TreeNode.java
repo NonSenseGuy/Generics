@@ -58,6 +58,14 @@ public class TreeNode<K extends Comparable<K>, V> implements Comparable<K>{
 		return key.compareTo(o);
 	}
 	
+	public boolean isLeaf() {
+		return right == null && left == null;
+	}
+	
+	public boolean hasOneChild() {
+		return (right == null && left != null)||(right != null && left == null); 
+	}
+	
 
 
 	

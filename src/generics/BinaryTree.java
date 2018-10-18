@@ -41,7 +41,7 @@ public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterfa
 				newNode.setParent(current);
 				size++;
 				return;
-			//else keep evauali
+			//else keep evaluating
 			}else {
 				insert(current.getRight(), newNode);
 			}
@@ -152,6 +152,39 @@ public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterfa
 	
 	private void delete(TreeNode<K,V> node) {
 		
+		
+		
+		if(node.isLeaf()) {// If the node is a leaf
+			if(node.getParent().compareTo(node.getKey()) < 0) {// Get to the parent evaluate wich child is the one to be deleted
+				node.getParent().setRight(null);// Set left or right child null 
+				size--;
+			}else {
+				node.getParent().setLeft(null);
+				size--;
+			}
+		}else if(node.hasOneChild()) {// If the node has only one child
+			if(node.getParent().compareTo(node.getKey()) < 0) {//Get to the parent of the deleted node and set the child of the deleted node 
+				if(node.getLeft() != null) {					//to be the child of the parent 
+					node.getParent().setRight(node.getLeft());
+				}else {
+					node.getParent().setRight(node.getRight());
+				}
+				size--;
+			}else {
+				if(node.getLeft() != null) {
+					node.getParent().setLeft(node.getLeft());
+				}else {
+					node.getParent().setLeft(node.getRight());
+				}
+				size--;
+			}
+		}else {
+			TreeNode<K,V> successor = successor(node);
+			node.setKey(successor.getKey());
+			node.setValue(successor.getValue());
+			delete(successor);
+				
+		}
 	}
 //	
 //	private void delete(TreeNode<K,V> node) {
