@@ -1,9 +1,11 @@
 package generics;
 
+import java.util.ArrayList;
+
 public class TreeNode<K extends Comparable<K>, V> implements Comparable<K>{
 	
 	private K key;
-	private V value;
+	private ArrayList<V> value;
 	private TreeNode<K,V> right;
 	private TreeNode<K,V> left;
 	private TreeNode<K,V> parent;
@@ -11,7 +13,8 @@ public class TreeNode<K extends Comparable<K>, V> implements Comparable<K>{
 
 	public TreeNode(K key, V value ) {
 		this.key = key;
-		this.value = value;
+		this.value = new ArrayList<>();
+		this.value.add(value);
 	}
 	
 	public K getKey() {
@@ -22,11 +25,11 @@ public class TreeNode<K extends Comparable<K>, V> implements Comparable<K>{
 		this.key = value;
 	}
 
-	public V getValue() {
+	public ArrayList<V> getValue() {
 		return value;
 	}
 
-	public void setValue(V value) {
+	public void setValue(ArrayList<V> value) {
 		this.value = value;
 	}
 

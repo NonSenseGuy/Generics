@@ -7,10 +7,15 @@ public class RBTreeNode<K extends Comparable<K>,V> extends TreeNode<K,V>{
 	
 	private boolean color;
 	
-	public RBTreeNode(K key, V value, boolean color) {
+	public RBTreeNode(K key, V value) {
 		super(key, value);
+	}
+	
+	public RBTreeNode(K key, V value, boolean color) {
+		super(key,value);
 		this.color = color;
 	}
+	
 
 	public boolean getColor() {
 		return color;

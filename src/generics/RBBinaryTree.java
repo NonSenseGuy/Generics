@@ -25,13 +25,29 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements BinaryTreeInter
 
 	@Override
 	public void insert(K key, V value) {
-		// TODO Auto-generated method stub
+		RBTreeNode<K,V> node = new RBTreeNode<K,V>(key,value);
+		if(root == null) {
+			node.setColor(false);
+			root = node;
+		}else {
+			insert(root, node);
+		}
+		
+		
+	}
+	
+	private void insert(RBTreeNode<K,V> current, RBTreeNode<K,V> newNode) {
 		
 	}
 
 	@Override
 	public TreeNode<K, V> search(K key) {
-		// TODO Auto-generated method stub
+		if(root != null) {
+			return search(root, key);
+		}return null;
+	}
+	
+	private TreeNode<K,V> search(RBTreeNode<K,V> current, K key){
 		return null;
 	}
 

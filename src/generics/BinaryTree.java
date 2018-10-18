@@ -1,5 +1,7 @@
 package generics;
 
+import java.util.ArrayList;
+
 public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterface<K,V>{
 	
 	private TreeNode<K,V> root;
@@ -20,9 +22,12 @@ public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterfa
 	@Override
 	public void insert(K key, V value) {
 		TreeNode<K,V> node = new TreeNode<K,V>(key, value);
+		TreeNode<K,V> aux;
 		if(root == null) {
 			this.root = node;
 			size++;
+		}else if((aux = search(key)) != null){
+			aux.getValue().add(value);
 		}else {
 			insert(root, node);
 		}
@@ -146,6 +151,18 @@ public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterfa
 			delete(search(key));
 		}
 		
+	}
+	
+	public void deleteValue(K key, V value) {
+		ArrayList<V> values = search(key).getValue();
+		for(int i = 0; i < values.size(); i++) {
+			if(values.get(i).equals(value)) {
+				values.remove(i);
+			}
+		}
+		if(values.size() == 0) {
+			delete(key);
+		}
 	}
 	
 	private void delete(TreeNode<K,V> node) {
