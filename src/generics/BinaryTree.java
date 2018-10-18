@@ -1,7 +1,5 @@
 package generics;
 
-import javafx.util.Pair;
-
 public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterface<K,V>{
 	
 	private TreeNode<K,V> root;
@@ -178,7 +176,7 @@ public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterfa
 				}
 				size--;
 			}
-		}else {
+		}else {//If the node has 2 childs gets replaced with its successor and the succeessor its deleted
 			TreeNode<K,V> successor = successor(node);
 			node.setKey(successor.getKey());
 			node.setValue(successor.getValue());
@@ -186,35 +184,7 @@ public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterfa
 				
 		}
 	}
-//	
-//	private void delete(TreeNode<K,V> node) {
-//		TreeNode<K,V> x = node;
-//		TreeNode<K,V> y  = node;
-//		if(x.getLeft() == null || x.getRight() == null) {
-//			y = node;
-//		}else {
-//			y = successor(y);
-//		}
-//		if(y.getLeft() != null) {
-//			x = y.getLeft();
-//		}else {
-//			x = y.getRight();
-//		}
-//		if(x != null) {
-//			x.setParent(y.getParent());
-//		}
-//		if(y.getParent() == null) {
-//			root = x;	
-//		}else if(y == y.getParent().getLeft()) {
-//			y.getParent().setLeft(x);
-//		}else {
-//			y.getParent().setRight(x);
-//		}
-//		if(y != x) {
-//			x.setKey(y.getKey());
-//		}
-//		
-//	}
+
 
 	
 	

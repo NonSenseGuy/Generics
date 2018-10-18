@@ -1,7 +1,5 @@
 package generics;
 
-import javafx.util.Pair;
-
 public interface BinaryTreeInterface<K extends Comparable<K>, V> {
 	
 	public void insert(K key, V value);
