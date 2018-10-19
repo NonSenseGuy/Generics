@@ -201,6 +201,28 @@ public class BinaryTree<K extends Comparable<K>, V> implements BinaryTreeInterfa
 				
 		}
 	}
+	
+	public String inorder() {
+		if(root != null) {
+			return inorder("", root);
+		}else {
+			return "";
+		}
+	}
+	
+	private String inorder(String msg,TreeNode<K,V> node) {
+		 if (node == null) 
+	            return msg;
+	  
+	        /* first recur on left child */
+	        return inorder(msg, node.getLeft() ); 
+	  
+	        /* then print the data of node */
+	        msg += (node.getKey() + " "); 
+	  
+	        /* now recur on right child */
+	        return inorder(msg ,node.getRight()); 
+	}
 
 
 	
