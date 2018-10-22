@@ -31,6 +31,7 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements BinaryTreeInter
 			root = node;
 		}else {
 			insert(root, node);
+			
 		}
 		
 		
