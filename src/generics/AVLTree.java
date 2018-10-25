@@ -1,6 +1,6 @@
 package generics;
 
-
+import com.aed.lab3.generic.TreeNode;
 
 public class AVLTree<K extends Comparable<K>,V> implements AVLTreeInterface<K,V> {
 	
@@ -32,9 +32,21 @@ public class AVLTree<K extends Comparable<K>,V> implements AVLTreeInterface<K,V>
 
 	@Override
 	public void insert(K key, V value) {
-		// TODO Auto-generated method stub
+		TreeNode<K,V> node = new TreeNode<K,V>(key, value);
+		TreeNode<K,V> aux;
+		if(root == null) {
+			this.root = node;
+		}else if((aux = search(key)) != null){
+			aux.getValue().add(value);
+		}else {
+			insert(root, node);
+		}
+	}
+	
+	private void insert(AVLTreeNode<K,V> node, AVLTreeNode<K,V> newNode){
 		
 	}
+	
 	@Override
 	public AVLTreeNode<K, V> delete(K key) {
 		// TODO Auto-generated method stub
@@ -47,10 +59,10 @@ public class AVLTree<K extends Comparable<K>,V> implements AVLTreeInterface<K,V>
 	}
 	
 	private AVLTreeNode<K,V> search(AVLTreeNode<K,V> x, K key){
-		if(x == null || x.compareTo(key) == 0) {
+		if(x == null || x.getKey().compareTo(key) == 0) {
 			return x;
 		}else {
-			if(x.compareTo(key) < 0) {
+			if(x.getKey().compareTo(key) < 0) {
 				return search(x.getLeft(), key);
 			}else {
 				return search(x.getRight(), key);
@@ -94,6 +106,17 @@ public class AVLTree<K extends Comparable<K>,V> implements AVLTreeInterface<K,V>
 		y.setRight(x);
 		x.setParent(y);
 	}
+	
+	public int getBalance() {
+		return getBalance(root);
+	}
+	public int getBalance(AVLTreeNode<K,V> node) {
+		if(node == null) {
+			return 0;
+		}
+		return height(node.getLeft()) - height(node.getRight());
+	}
+	
 	@Override
 	public void rebalance(AVLTreeNode<K, V> node) {
 		// TODO Auto-generated method stub

@@ -2,7 +2,7 @@ package generics;
 
 import java.util.ArrayList;
 
-public class AVLTreeNode<K extends Comparable<K>, V> implements Comparable<K> {
+public class AVLTreeNode<K extends Comparable<K>, V> implements Comparable<AVLTreeNode<K,V>> {
 	
 	private AVLTreeNode<K,V> left,right,parent;
 	private int height;
@@ -15,6 +15,8 @@ public class AVLTreeNode<K extends Comparable<K>, V> implements Comparable<K> {
 		this.value.add(value);
 		height = 1;
 	}
+	
+	
 	
 	public AVLTreeNode<K, V> getLeft() {
 		return left;
@@ -65,8 +67,10 @@ public class AVLTreeNode<K extends Comparable<K>, V> implements Comparable<K> {
 	}
 
 	@Override
-	public int compareTo(K o) {
-		return key.compareTo(o);
+	public int compareTo(AVLTreeNode<K, V> o) {
+		return key.compareTo(o.getKey());
 	}
+
+
 	
 }
